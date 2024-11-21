@@ -1,3 +1,9 @@
+import "../node_modules/bootstrap/dist/css/bootstrap.css";
+import "../node_modules/bootstrap/dist/js/bootstrap";
+import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
+import "./css/main.css";
+// // import "cesium/Build/Cesium/Widgets/widgets.css";
+
 import {
   Viewer,
   Terrain,
