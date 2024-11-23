@@ -103,11 +103,6 @@ const EQ_TMS = [
     time: "2024/01/02",
     tms: "https://cyberjapandata.gsi.go.jp/xyz/20240102noto_wazimahigashi_0102do/{z}/{x}/{y}.png",
   },
-  {
-    place: "Wazimanaka",
-    time: "2024/01/02",
-    tms: "https://cyberjapandata.gsi.go.jp/xyz/20240102noto_wazimanaka_0102do/{z}/{x}/{y}.png",
-  },
 ];
 const RAIN_TMS = [
   {

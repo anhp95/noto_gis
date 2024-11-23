@@ -3,6 +3,7 @@ import "../node_modules/bootstrap/dist/js/bootstrap";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import "./css/main.css";
 // // import "cesium/Build/Cesium/Widgets/widgets.css";
+import "./js/rotateDropDown.js";
 
 import {
   Viewer,
@@ -156,24 +157,38 @@ eq_events.forEach((key) => {
   viewer.imageryLayers.add(EQ_TMS_OBJ[key]);
 });
 
-console.log(EQ_TMS_OBJ["20240102noto_wazimanaka_0102do"]);
-console.log(viewer.imageryLayers);
+// Earthquake checked box
+export function eqCheck(event) {
+  console.log(event.target.id);
+  // console.log(event.target.checked);
+  const id = event.target.id;
+  if (event.target.checked) {
+    EQ_TMS_OBJ[id].show = true;
+  } else {
+    EQ_TMS_OBJ[id].show = false;
+  }
+}
+window.eqCheck = eqCheck;
 
-document.getElementById("btn-terrain").addEventListener("click", () => {
-  // if (!viewer.dataSources.contains(cityhall)) {
-  //   viewer.dataSources.add(cityhall);
-  // }
-  eq_events.forEach((key) => {
-    EQ_TMS_OBJ[key].show = true;
-  });
+document.getElementById("eqSelectAll").addEventListener("change", (event) => {
+  if (event.target.checked) {
+    eq_events.forEach((key) => {
+      console.log(key);
+      const checkbox = document.getElementById(key);
+      checkbox.checked = true;
+      EQ_TMS_OBJ[key].show = true;
+    });
+  } else {
+    eq_events.forEach((key) => {
+      console.log(key);
+      const checkbox = document.getElementById(key);
+      console.log(checkbox);
+      checkbox.checked = false;
+      EQ_TMS_OBJ[key].show = false;
+    });
+  }
 });
 document.getElementById("btn-roof").addEventListener("click", () => {
-  // if (viewer.dataSources.contains(cityhall)) {
-  //   viewer.dataSources.remove(cityhall);
-  // }
-  // console.log(viewer.dataSources._dataSources[8].show);
-  // viewer.dataSources._dataSources[8].show = false;
-
   eq_events.forEach((key) => {
     EQ_TMS_OBJ[key].show = false;
   });

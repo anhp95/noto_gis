@@ -46,59 +46,36 @@
           <hr class="bold-hr" />
 
           <div class="row align-items-center">
-            <div class="col-6 text-light align-items-center">
-              Earthquake
-            </div>
-            <div class="col-6 btn-group">
-              <input
-                type="radio"
-                class="btn-check"
-                name="btn-radio"
-                id="btn-terrain"
-                checked
-              />
-              <label for="btn-terrain" class="btn btn-outline-primary"
-                >Terrain</label
-              >
-              <input
-                type="radio"
-                class="btn-check"
-                name="btn-radio"
-                id="btn-roof"
-              />
-              <label for="btn-roof" class="btn btn-outline-primary">Roof</label>
-            </div>
             <div class="nav-item w-100 text-light">
-              <a
-                class="nav-link align-items-center"
-                data-bs-toggle="collapse"
-                href="#submenu1"
-                role="button"
-                aria-expanded="false"
-                aria-controls="submenu1"
-              >
-                Services <span class="caret"></span>
-              </a>
-              <div class="collapse" id="submenu1">
+              <button class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#eqlayers" aria-expanded="false" aria-controls="eqlayers">
+                <span>Earthquake Tile Map Services</span>
+                <span class="dropdown-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="collapse" id="eqlayers">
                 <ul class="list-unstyled ps-3">
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-6 text-light align-items-center">
-                        Point Cloud
+                      <div class="col-8 text-light align-items-center">
+                        Select all layers
                       </div>
 
-                      <div class="col-6 text-light">
+                      <div class="col-4 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
                             type="checkbox"
                             role="switch"
                             name="classification"
-                            id="isPointCloud"
+                            id="eqSelectAll"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
-                            for="isPointCloud"
+                            for="eqSelectAll"
                           ></label>
                         </div>
                       </div>
@@ -106,22 +83,24 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-6 text-light align-items-center">
-                        Point Cloud
+                      <div class="col-8 text-light align-items-center">
+                        Noto - 2024, April 05-26
                       </div>
 
-                      <div class="col-6 text-light">
+                      <div class="col-4 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
                             type="checkbox"
                             role="switch"
                             name="classification"
-                            id="isPointCloud"
+                            id="20240102noto_0405_0426do"
+                            onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
-                            for="isPointCloud"
+                            for="20240102noto_0405_0426do"
                           ></label>
                         </div>
                       </div>
@@ -129,22 +108,383 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-6 text-light align-items-center">
-                        Point Cloud
+                      <div class="col-8 text-light align-items-center">
+                        Wazimanishi - 2024/01/17
                       </div>
 
-                      <div class="col-6 text-light">
+                      <div class="col-4 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
                             type="checkbox"
                             role="switch"
                             name="classification"
-                            id="isPointCloud"
+                            id="20240102noto_wazimanishi_0117do"
+                            onchange="eqCheck(event)"
                           />
                           <label
                             class="form-check-label ms-3"
-                            for="isPointCloud"
+                            for="20240102noto_wazimanishi_0117do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Anamizu - 2024/01/17
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_anamizu_0117do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_anamizu_0117do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Nanao - 2024/01/17
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_nanao_0117do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_nanao_0117do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Suzu - 2024/01/14
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_suzu_0114do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_suzu_0114do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimahigashi - 2024/01/14
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_wazimahigashi_0114do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_wazimahigashi_0114do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Anamizu - 2024/01/14
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_anamizu_0114do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_anamizu_0114do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimanaka - 2024/01/11
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_wazimanaka_0111do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_wazimanaka_0111do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimanishi - 2024/01/11
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_wazimanishi_0111do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_wazimanishi_0111do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Anamizu - 2024/01/11
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_anamizu_0111do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_anamizu_0111do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Suzu - 2024/01/05
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102_noto_suzu_0105do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102_noto_suzu_0105do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimanaka - 2024/01/05
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102_noto_wazimanaka_0105do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102_noto_wazimanaka_0105do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Anamizu - 2024/01/05
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102_noto_anamizu_0105do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102_noto_anamizu_0105do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Nanao - 2024/01/05
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102_noto_nanao_0105do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102_noto_nanao_0105do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Suzu - 2024/01/02
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_suzu_0102do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_suzu_0102do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimanaka - 2024/01/02
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_wazimanaka_0102do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_wazimanaka_0102do"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-8 text-light align-items-center">
+                        Wazimahigashi - 2024/01/02
+                      </div>
+
+                      <div class="col-4 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240102noto_wazimahigashi_0102do"
+                            onchange="eqCheck(event)"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240102noto_wazimahigashi_0102do"
                           ></label>
                         </div>
                       </div>

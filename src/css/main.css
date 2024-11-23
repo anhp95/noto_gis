@@ -17,4 +17,16 @@ body,
   height: 1px;
   background-color: #ffffff;
 }
-
+#offcanvasScrolling .btn {
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#offcanvasScrolling .dropdown-icon {
+  transition: transform 0.3s ease;
+}
+#offcanvasScrolling .dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
