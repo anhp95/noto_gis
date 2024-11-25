@@ -44,11 +44,610 @@
 
         <div class="offcanvas-body">
           <hr class="bold-hr" />
-
           <div class="row align-items-center">
             <div class="nav-item w-100 text-light">
-              <button class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#eqlayers" aria-expanded="false" aria-controls="eqlayers">
-                <span>Earthquake Tile Map Services</span>
+              <button id="allDisasterButton" class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#generalInfor" aria-expanded="false" aria-controls="generalInfor">
+                <span>一般情報</span>
+                <span class="dropdown-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="collapse" id="generalInfor">
+                <ul class="list-unstyled ps-3">
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        すべてのレイヤーを選択
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="generalSelectAll"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for=generalSelectAll"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        市役所
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="cityHall"
+                            onchange="eqCheck(event, 'general')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="cityHall"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        石川県境
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="boundary"
+                            onchange="eqCheck(event, 'general')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="boundary"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        人口
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="population"
+                            onchange="eqCheck(event, 'general')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="population"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <hr class="bold-hr" />
+          <div class="row align-items-center">
+            <div class="nav-item w-100 text-light">
+              <button id="allDisasterButton" class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#potentialDisasterLayers" aria-expanded="false" aria-controls="potentialDisasterLayers">
+                <span>土砂崩れ危険地域</span>
+                <span class="dropdown-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="collapse" id="potentialDisasterLayers">
+                <ul class="list-unstyled ps-3">
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        すべてのレイヤーを選択
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="potentialSelectAll"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for=potentialSelectAll"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        Potential limited isolated villages
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="potential_limited"
+                            onchange="eqCheck(event, 'po_disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="potential_limited"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        Potential isolated villages
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="potential_isolated"
+                            onchange="eqCheck(event, 'po_disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="potential_isolated"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        損傷の可能性道路
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="potential_damaged_road"
+                            onchange="eqCheck(event, 'po_disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="potential_damaged_road"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        土砂崩れの可能性
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="potential_landslide"
+                            onchange="eqCheck(event, 'po_disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="potential_landslide"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <hr class="bold-hr" />
+          <div class="row align-items-center">
+            <div class="nav-item w-100 text-light">
+              <button id="allDisasterButton" class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#allDisasterLayers" aria-expanded="false" aria-controls="allDisasterLayers">
+                <span>2024年の能登半島の災害</span>
+                <span class="dropdown-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="collapse" id="allDisasterLayers">
+                <ul class="list-unstyled ps-3">
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        すべてのレイヤーを選択
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="notoDisasterSelectAll"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for=notoDisasterSelectAll"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        Limited isolated villages
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="limited_2024"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="limited_2024"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        Isolated villages
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="isolated_2024"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="isolated_2024"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        損傷した道路
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="DRoad_2024"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="DRoad_2024"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        大雨 (2024/9)
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="heavyRain"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="heavyRain"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        地震 輪島西地区 (2024/01/22)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="hokai_20240122_wajimaWEST"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="hokai_20240122_wajimaWEST"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        地震 輪島中地区 (2024/01/15)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="hokai_all_20240115_wajimaCENTRAL_Re2"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="hokai_all_20240115_wajimaCENTRAL_Re2"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        地震 穴水地区 (2024/01/18)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="hokai_all_20240118_anamizu"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="hokai_all_20240118_anamizu"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        地震 七尾地区 (2024/01/18)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="hokai_all_20240118_nanao"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="hokai_all_20240118_nanao"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        津波 穴水地区 (2024/01/18)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="tsunami_area_anamizu_20240118"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="tsunami_area_anamizu_20240118"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        津波 七尾地区 (2024/01/18)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="tsunami_area_nanao_20240118"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="tsunami_area_nanao_20240118"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        津波 輪島東地区 (2024/01/10)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="tsunami_area_suzu_wajimaEAST_Re2_20240110"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="tsunami_area_suzu_wajimaEAST_Re2_20240110"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        津波 輪島西地区 (2024/01/12)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="tsunami_area_wajimaWEST_20240112"
+                            onchange="eqCheck(event, 'disaster')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="tsunami_area_wajimaWEST_20240112"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <hr class="bold-hr" />
+          <div class="row align-items-center">
+            <div class="nav-item w-100 text-light">
+              <button id="quakeButton" class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#eqlayers" aria-expanded="false" aria-controls="eqlayers">
+                <span>地震 タイルマップサービス</span>
                 <span class="dropdown-icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
                     <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
@@ -59,11 +658,11 @@
                 <ul class="list-unstyled ps-3">
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Select all layers
+                      <div class="col-9 text-light align-items-center">
+                        すべてのレイヤーを選択
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -83,11 +682,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Noto - 2024, April 05-26
+                      <div class="col-9 text-light align-items-center">
+                       能登地区 (2024, April 05-26)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -108,11 +707,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimanishi - 2024/01/17
+                      <div class="col-9 text-light align-items-center">
+                        輪島西地区 (2024/01/17)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -121,6 +720,7 @@
                             name="classification"
                             id="20240102noto_wazimanishi_0117do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -132,11 +732,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Anamizu - 2024/01/17
+                      <div class="col-9 text-light align-items-center">
+                        穴水地区 (2024/01/17)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -145,6 +745,7 @@
                             name="classification"
                             id="20240102noto_anamizu_0117do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -156,11 +757,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Nanao - 2024/01/17
+                      <div class="col-9 text-light align-items-center">
+                        七尾地区 (2024/01/17)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -169,6 +770,7 @@
                             name="classification"
                             id="20240102noto_nanao_0117do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -180,11 +782,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Suzu - 2024/01/14
+                      <div class="col-9 text-light align-items-center">
+                        珠洲地区 (2024/01/14)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -193,6 +795,7 @@
                             name="classification"
                             id="20240102noto_suzu_0114do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -204,11 +807,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimahigashi - 2024/01/14
+                      <div class="col-9 text-light align-items-center">
+                        輪島東地区 (2024/01/14)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -217,6 +820,7 @@
                             name="classification"
                             id="20240102noto_wazimahigashi_0114do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -228,11 +832,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Anamizu - 2024/01/14
+                      <div class="col-9 text-light align-items-center">
+                        穴水地区 (2024/01/14)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -241,6 +845,7 @@
                             name="classification"
                             id="20240102noto_anamizu_0114do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -252,11 +857,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimanaka - 2024/01/11
+                      <div class="col-9 text-light align-items-center">
+                        輪島中地区 (2024/01/11)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -265,6 +870,7 @@
                             name="classification"
                             id="20240102noto_wazimanaka_0111do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -276,11 +882,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimanishi - 2024/01/11
+                      <div class="col-9 text-light align-items-center">
+                        輪島西地区 (2024/01/11)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -289,6 +895,7 @@
                             name="classification"
                             id="20240102noto_wazimanishi_0111do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -300,11 +907,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Anamizu - 2024/01/11
+                      <div class="col-9 text-light align-items-center">
+                        穴水地区 (2024/01/11)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -313,6 +920,7 @@
                             name="classification"
                             id="20240102noto_anamizu_0111do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -324,11 +932,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Suzu - 2024/01/05
+                      <div class="col-9 text-light align-items-center">
+                        珠洲地区 (2024/01/05)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -337,6 +945,7 @@
                             name="classification"
                             id="20240102_noto_suzu_0105do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -348,11 +957,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimanaka - 2024/01/05
+                      <div class="col-9 text-light align-items-center">
+                        輪島中地区 (2024/01/05)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -361,6 +970,7 @@
                             name="classification"
                             id="20240102_noto_wazimanaka_0105do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -372,11 +982,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Anamizu - 2024/01/05
+                      <div class="col-9 text-light align-items-center">
+                        穴水地区 (2024/01/05)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -385,6 +995,7 @@
                             name="classification"
                             id="20240102_noto_anamizu_0105do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -396,11 +1007,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Nanao - 2024/01/05
+                      <div class="col-9 text-light align-items-center">
+                        七尾地区 (2024/01/05)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -409,6 +1020,7 @@
                             name="classification"
                             id="20240102_noto_nanao_0105do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -420,11 +1032,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Suzu - 2024/01/02
+                      <div class="col-9 text-light align-items-center">
+                        珠洲地区 (2024/01/02)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -433,6 +1045,7 @@
                             name="classification"
                             id="20240102noto_suzu_0102do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -444,11 +1057,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimanaka - 2024/01/02
+                      <div class="col-9 text-light align-items-center">
+                        輪島中地区 (2024/01/02)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -457,6 +1070,7 @@
                             name="classification"
                             id="20240102noto_wazimanaka_0102do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -468,11 +1082,11 @@
                   </li>
                   <li>
                     <div class="row align-items-center">
-                      <div class="col-8 text-light align-items-center">
-                        Wazimahigashi - 2024/01/02
+                      <div class="col-9 text-light align-items-center">
+                        輪島東地区 (2024/01/02)
                       </div>
 
-                      <div class="col-4 text-light">
+                      <div class="col-3 text-light">
                         <div class="form-switch">
                           <input
                             class="form-check-input"
@@ -481,6 +1095,7 @@
                             name="classification"
                             id="20240102noto_wazimahigashi_0102do"
                             onchange="eqCheck(event)"
+                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -496,100 +1111,122 @@
           </div>
 
           <hr class="bold-hr" />
-
           <div class="row align-items-center">
-            <div class="col-6 text-light align-items-center">Point Cloud</div>
+            <div class="nav-item w-100 text-light">
+              <button id="rainButton" class="btn btn-outline-primary mt-2" type="button" data-bs-toggle="collapse" data-bs-target="#rainlayers" aria-expanded="false" aria-controls="rainlayers">
+                <span>大雨 タイルマップサービス</span>
+                <span class="dropdown-icon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
+                  </svg>
+                </span>
+              </button>
+              <div class="collapse" id="rainlayers">
+                <ul class="list-unstyled ps-3">
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        すべてのレイヤーを選択
+                      </div>
 
-            <div class="col-6 text-light">
-              <div class="form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  name="classification"
-                  id="isPointCloud"
-                />
-                <label class="form-check-label ms-3" for="isPointCloud"></label>
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="rainSelectAll"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="rainSelectAll"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        輪島東部地区 (2024/09/24)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240923rain_wajimatobu_0924do_sokuho"
+                            onchange="eqCheck(event, 'rain')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240923rain_wajimatobu_0924do_sokuho"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        輪島西部地区 (2024/09/24)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240923rain_wajimaseibu_0924do_sokuho"
+                            onchange="eqCheck(event, 'rain')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240923rain_wajimaseibu_0924do_sokuho"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        輪島地区 (2024/09/23)
+                      </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="20240923rain_wajima_0923do_sokuho"
+                            onchange="eqCheck(event, 'rain')"
+                            checked
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="20240923rain_wajima_0923do_sokuho"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>
-
           <hr class="bold-hr" />
-
-          <div class="row align-items-center">
-            <div class="col-6 text-light">BIM Data</div>
-
-            <div class="col-6 d-flex justify-content-start align-items-center">
-              <div class="form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  name="classification"
-                  id="isBIMData"
-                />
-                <label class="form-check-label ms-3" for="isBIMData"></label>
-              </div>
-              <button
-                class="btn btn-outline-primary"
-                type="button"
-                id="zoomToBIM"
-              >
-                <i class="bi bi-zoom-in h5"></i>
-              </button>
-            </div>
-          </div>
-
-          <hr class="bold-hr" />
-
-          <div class="row align-items-center">
-            <div class="col-6 text-light">Google Photorealistic 3D Tiles</div>
-            <div class="col-6">
-              <div class="form-switch">
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  role="switch"
-                  name="classification"
-                  id="isGooglePhotorealistic"
-                />
-                <label
-                  class="form-check-label ms-3"
-                  for="isGooglePhotorealistic"
-                ></label>
-              </div>
-            </div>
-          </div>
-
-          <hr class="bold-hr" />
-
-          <div class="row align-items-center">
-            <div class="col-6 text-light">Aircraft</div>
-            <div class="col-6">
-              <button
-                class="btn btn-outline-primary"
-                type="button"
-                id="zoomToAircraft"
-              >
-                <i class="bi bi-zoom-in h5"></i>
-              </button>
-            </div>
-          </div>
-
-          <hr class="bold-hr" />
-
-          <div class="row align-items-center">
-            <div class="col-6 text-light">Fetch/Update Entities</div>
-            <div class="col-6">
-              <button
-                class="btn btn-outline-primary"
-                type="button"
-                id="fetchData"
-              >
-                <i class="bi bi-arrow-clockwise h5"></i>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
