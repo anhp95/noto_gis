@@ -70,7 +70,6 @@
                             role="switch"
                             name="classification"
                             id="generalSelectAll"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -95,7 +94,6 @@
                             name="classification"
                             id="cityHall"
                             onchange="eqCheck(event, 'general')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -120,7 +118,6 @@
                             name="classification"
                             id="boundary"
                             onchange="eqCheck(event, 'general')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -145,11 +142,34 @@
                             name="classification"
                             id="population"
                             onchange="eqCheck(event, 'general')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
                             for="population"
+                          ></label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="row align-items-center">
+                      <div class="col-9 text-light align-items-center">
+                        Damaged road by EQ - Drone
+                     </div>
+
+                      <div class="col-3 text-light">
+                        <div class="form-switch">
+                          <input
+                            class="form-check-input"
+                            type="checkbox"
+                            role="switch"
+                            name="classification"
+                            id="eq_road_drone"
+                            onchange="eqCheck(event, 'general')"
+                          />
+                          <label
+                            class="form-check-label ms-3"
+                            for="eq_road_drone"
                           ></label>
                         </div>
                       </div>
@@ -186,7 +206,6 @@
                             role="switch"
                             name="classification"
                             id="potentialSelectAll"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -211,7 +230,6 @@
                             name="classification"
                             id="potential_limited"
                             onchange="eqCheck(event, 'po_disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -236,7 +254,6 @@
                             name="classification"
                             id="potential_isolated"
                             onchange="eqCheck(event, 'po_disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -261,7 +278,6 @@
                             name="classification"
                             id="potential_damaged_road"
                             onchange="eqCheck(event, 'po_disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -286,7 +302,6 @@
                             name="classification"
                             id="potential_landslide"
                             onchange="eqCheck(event, 'po_disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -328,7 +343,6 @@
                             role="switch"
                             name="classification"
                             id="notoDisasterSelectAll"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -353,7 +367,6 @@
                             name="classification"
                             id="limited_2024"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -378,7 +391,6 @@
                             name="classification"
                             id="isolated_2024"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -403,7 +415,6 @@
                             name="classification"
                             id="DRoad_2024"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -428,7 +439,6 @@
                             name="classification"
                             id="heavyRain"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -453,7 +463,6 @@
                             name="classification"
                             id="hokai_20240122_wajimaWEST"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -478,7 +487,6 @@
                             name="classification"
                             id="hokai_all_20240115_wajimaCENTRAL_Re2"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -503,7 +511,6 @@
                             name="classification"
                             id="hokai_all_20240118_anamizu"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -528,7 +535,6 @@
                             name="classification"
                             id="hokai_all_20240118_nanao"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -553,7 +559,6 @@
                             name="classification"
                             id="tsunami_area_anamizu_20240118"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -578,7 +583,6 @@
                             name="classification"
                             id="tsunami_area_nanao_20240118"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -603,7 +607,6 @@
                             name="classification"
                             id="tsunami_area_suzu_wajimaEAST_Re2_20240110"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -628,7 +631,6 @@
                             name="classification"
                             id="tsunami_area_wajimaWEST_20240112"
                             onchange="eqCheck(event, 'disaster')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -670,7 +672,6 @@
                             role="switch"
                             name="classification"
                             id="eqSelectAll"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -695,7 +696,6 @@
                             name="classification"
                             id="20240102noto_0405_0426do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -720,7 +720,6 @@
                             name="classification"
                             id="20240102noto_wazimanishi_0117do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -745,7 +744,6 @@
                             name="classification"
                             id="20240102noto_anamizu_0117do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -770,7 +768,6 @@
                             name="classification"
                             id="20240102noto_nanao_0117do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -795,7 +792,6 @@
                             name="classification"
                             id="20240102noto_suzu_0114do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -820,7 +816,6 @@
                             name="classification"
                             id="20240102noto_wazimahigashi_0114do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -845,7 +840,6 @@
                             name="classification"
                             id="20240102noto_anamizu_0114do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -870,7 +864,6 @@
                             name="classification"
                             id="20240102noto_wazimanaka_0111do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -895,7 +888,6 @@
                             name="classification"
                             id="20240102noto_wazimanishi_0111do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -920,7 +912,6 @@
                             name="classification"
                             id="20240102noto_anamizu_0111do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -945,7 +936,6 @@
                             name="classification"
                             id="20240102_noto_suzu_0105do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -970,7 +960,6 @@
                             name="classification"
                             id="20240102_noto_wazimanaka_0105do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -995,7 +984,6 @@
                             name="classification"
                             id="20240102_noto_anamizu_0105do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1020,7 +1008,6 @@
                             name="classification"
                             id="20240102_noto_nanao_0105do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1045,7 +1032,6 @@
                             name="classification"
                             id="20240102noto_suzu_0102do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1070,7 +1056,6 @@
                             name="classification"
                             id="20240102noto_wazimanaka_0102do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1095,7 +1080,6 @@
                             name="classification"
                             id="20240102noto_wazimahigashi_0102do"
                             onchange="eqCheck(event)"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1137,7 +1121,6 @@
                             role="switch"
                             name="classification"
                             id="rainSelectAll"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1162,7 +1145,6 @@
                             name="classification"
                             id="20240923rain_wajimatobu_0924do_sokuho"
                             onchange="eqCheck(event, 'rain')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1187,7 +1169,6 @@
                             name="classification"
                             id="20240923rain_wajimaseibu_0924do_sokuho"
                             onchange="eqCheck(event, 'rain')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"
@@ -1212,7 +1193,6 @@
                             name="classification"
                             id="20240923rain_wajima_0923do_sokuho"
                             onchange="eqCheck(event, 'rain')"
-                            checked
                           />
                           <label
                             class="form-check-label ms-3"

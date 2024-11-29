@@ -124,14 +124,16 @@ RAIN_TMS.forEach((obj) => {
 
 export function handleTMS(viewer, tmsObj, selectAllID) {
   const events = Object.keys(tmsObj);
-  events.forEach((key) => {
-    viewer.imageryLayers.add(tmsObj[key]);
-  });
 
   document.getElementById(selectAllID).addEventListener("change", (event) => {
     if (event.target.checked) {
       events.forEach((key) => {
         const checkbox = document.getElementById(key);
+
+        if (!viewer.imageryLayers.contains(tmsObj[key])) {
+          viewer.imageryLayers.add(tmsObj[key]);
+        }
+
         checkbox.checked = true;
         tmsObj[key].show = true;
       });

@@ -30,3 +30,13 @@ body,
 #offcanvasScrolling .dropdown-icon.rotate {
   transform: rotate(180deg);
 }
+.cesium-infoBox {
+  max-height: none !important;
+  max-width: none !important;
+}
+
+.cesium-infoBox .cesium-infoBox-description {
+  overflow: auto !important;
+  max-height: 80vh;
+  max-width: 80vw;
+}

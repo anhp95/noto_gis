@@ -28,6 +28,9 @@ const potential_damaged_road_path =
 const potential_landslide_path =
   "./data/earthquake/potential_landslide.geojson";
 
+const eq_road_drone_path =
+  "../data/mlit_road_data/geojson/damage_situation_aerial_photography.geojson";
+
 const eq_path = {
   hokai_20240122_wajimaWEST:
     "./data/earthquake/hokai_20240122_wajimaWEST.geojson",
@@ -53,7 +56,6 @@ const tsunami_path = {
 export const getGeneralInfor = async () => {
   const geojson_layer = {
     cityHall: await GeoJsonDataSource.load(cityHall_path, {
-      markerColor: Config.HALL_COLOR,
       markerSize: 45,
       markerSymbol: "city",
     }),
@@ -62,6 +64,11 @@ export const getGeneralInfor = async () => {
       strokeWidth: 2,
       stroke: Config.BOUND_COLOR,
     }),
+    eq_road_drone: await GeoJsonDataSource.load(eq_road_drone_path, {
+      markerSize: 45,
+      markerSymbol: "roadblock",
+    }),
+    population: await GeoJsonDataSource.load(pop_path),
   };
   return geojson_layer;
 };
@@ -193,12 +200,21 @@ export const getDisaster2024 = async () => {
   return geojson_layer;
 };
 
-export function handleGeoJsonLayer(tmsObj, selectAllID) {
+export function handleGeoJsonLayer(viewer, tmsObj, selectAllID) {
   const events = Object.keys(tmsObj);
 
   document.getElementById(selectAllID).addEventListener("change", (event) => {
     if (event.target.checked) {
       events.forEach((key) => {
+        if (!viewer.dataSources.contains(tmsObj[key])) {
+          if (key == "population") {
+            tmsObj[key].entities.values.forEach((entity) => {
+              const pop_count = entity.properties.Population._value;
+              entity.polygon.material = Config.colorFunction(pop_count);
+            });
+          }
+          viewer.dataSources.add(tmsObj[key]);
+        }
         const checkbox = document.getElementById(key);
         checkbox.checked = true;
         tmsObj[key].show = true;
