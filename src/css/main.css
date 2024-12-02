@@ -40,3 +40,41 @@ body,
   max-height: 80vh;
   max-width: 80vw;
 }
+
+.legend-container {
+  display: none;
+  margin-top: 15px;
+}
+.legend-container.show {
+  display: inline-block;
+}
+.legend-bar {
+  height: 20px;
+  width: 100%;
+  background: linear-gradient(to right, #440154, #482878, #3e4a89, #31688e, #26828e, #1f9e89, #35b779, #6ece58, #b5de2b, #fde725);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  margin-top: 5px;
+}
+
+.legend-icon {
+  width: 24px;
+  height: 24px;
+  background-image: url('https://raw.githubusercontent.com/mapbox/maki-icons/main/icons/building-15.svg'); /* Maki Icon URL */
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+.legend-text {
+  font-size: 0.9rem;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
