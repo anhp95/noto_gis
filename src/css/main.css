@@ -48,19 +48,6 @@ body,
 .legend-container.show {
   display: inline-block;
 }
-.legend-bar {
-  height: 20px;
-  width: 100%;
-  background: linear-gradient(to right, #440154, #482878, #3e4a89, #31688e, #26828e, #1f9e89, #35b779, #6ece58, #b5de2b, #fde725);
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
-.legend-labels {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.8rem;
-  margin-top: 5px;
-}
 
 .legend-icon {
   width: 24px;

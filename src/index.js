@@ -1,3 +1,5 @@
+import "./js/fillHtmlContent.js";
+
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
@@ -9,17 +11,17 @@ import {
   Ion,
   GeoJsonDataSource,
   HeightReference,
+  Cartesian3,
 } from "cesium";
+import * as Config from "./js/config.js";
+// Ion.defaultAccessToken = Config.ionToken;
+
 import "cesium/Widgets/widgets.css";
 import "../src/css/main.css";
 
-import "./js/rotateDropDown.js";
-
-import * as Config from "./js/config.js";
 import * as handleTMS from "./js/handleTMS.js";
 import * as handleGeoJson from "./js/handleGeoJson.js";
-
-Ion.defaultAccessToken = Config.ionToken;
+import "./js/rotateDropDown.js";
 
 const viewer = new Viewer("cesiumContainer", {
   terrain: Terrain.fromWorldTerrain({
@@ -40,8 +42,6 @@ const GJS_DISASTER_2024_LAYER = await handleGeoJson.getDisaster2024();
 const GJS_POTENTIAL_DISASTER_LAYER = await handleGeoJson.getPoDisaster2024();
 const GJS_GENERAL_INFOR_LAYER = await handleGeoJson.getGeneralInfor();
 
-// viewer.zoomTo(GJS_GENERAL_INFOR_LAYER["boundary"]);
-
 handleGeoJson.handleGeoJsonLayer(
   viewer,
   GJS_DISASTER_2024_LAYER,
@@ -58,48 +58,103 @@ handleGeoJson.handleGeoJsonLayer(
   "generalSelectAll"
 );
 
-// Handle individual checkbox
-function turnOnGJSLayer(viewer, dataSrcObj, id) {
-  if (!viewer.dataSources.contains(dataSrcObj[id])) {
-    if (id == "population") {
-      dataSrcObj[id].entities.values.forEach((entity) => {
-        const pop_count = entity.properties.Population._value;
-        entity.polygon.material = Config.colorFunction(pop_count);
+const IIDA_GJS_POTENTIAL_DISASTER_LAYER =
+  await handleGeoJson.getPoDisaster2024Iida();
+const IIDA_GJS_GENERAL_INFOR_LAYER = await handleGeoJson.getGeneralInforIida();
+
+const po_disaster_layer = {
+  ishikawa: GJS_POTENTIAL_DISASTER_LAYER,
+  iida: IIDA_GJS_POTENTIAL_DISASTER_LAYER,
+};
+const generalInfor_layer = {
+  ishikawa: GJS_GENERAL_INFOR_LAYER,
+  iida: IIDA_GJS_GENERAL_INFOR_LAYER,
+};
+
+const ishikawa_all_layers = [
+  GJS_DISASTER_2024_LAYER,
+  GJS_POTENTIAL_DISASTER_LAYER,
+  GJS_GENERAL_INFOR_LAYER,
+  handleTMS.EQ_TMS_OBJ,
+  handleTMS.RAIN_TMS_OBJ,
+];
+
+const iida_all_layers = [
+  IIDA_GJS_POTENTIAL_DISASTER_LAYER,
+  IIDA_GJS_GENERAL_INFOR_LAYER,
+];
+
+const zoom_ishikawa = Cartesian3.fromDegrees(136.873498, 37.270735, 130000);
+
+const zoom_iida = Cartesian3.fromDegrees(137.958613, 35.56171, 130000);
+
+const regionSelect = document.getElementById("regionSelect");
+
+regionSelect.addEventListener("change", function (event) {
+  const selectedValue = event.target.value; // Get the selected value
+  console.log("Selected Region:", selectedValue);
+
+  if (selectedValue == "iida") {
+    ishikawa_all_layers.forEach((obj) => {
+      const events = Object.keys(obj);
+      events.forEach((key) => {
+        obj[key].show = false;
       });
-    }
-    if (id == "eq_road_drone") {
-      const entities = dataSrcObj[id].entities.values;
-      for (const entity of entities) {
-        // entity.heightReference = HeightReference.CLAMP_TO_GROUND;
-        // Set the InfoBox description to include the image
-        const imageUrl = entity.properties.src?.getValue();
-        const name = entity.properties.name?.getValue();
-        entity.description = `
-            <div style="overflow: auto; text-align: center;">
-                <img src="${imageUrl}" 
-                     alt="Image for ${name}" 
-                     style="width: 800px; height: 400px; display: block;" />
-            </div>
-        `;
-      }
-    }
-    viewer.dataSources.add(dataSrcObj[id]);
+    });
+    viewer.camera.flyTo({
+      destination: zoom_iida,
+    });
+    handleGeoJson.handleGeoJsonLayer(
+      viewer,
+      IIDA_GJS_POTENTIAL_DISASTER_LAYER,
+      "iida_potentialSelectAll"
+    );
+    handleGeoJson.handleGeoJsonLayer(
+      viewer,
+      IIDA_GJS_GENERAL_INFOR_LAYER,
+      "iida_generalSelectAll"
+    );
+  } else if (selectedValue == "ishikawa") {
+    iida_all_layers.forEach((obj) => {
+      const events = Object.keys(obj);
+      events.forEach((key) => {
+        obj[key].show = false;
+      });
+    });
+    viewer.camera.flyTo({
+      destination: zoom_ishikawa,
+    });
+    handleGeoJson.handleGeoJsonLayer(
+      viewer,
+      GJS_DISASTER_2024_LAYER,
+      "notoDisasterSelectAll"
+    );
+    handleGeoJson.handleGeoJsonLayer(
+      viewer,
+      GJS_POTENTIAL_DISASTER_LAYER,
+      "potentialSelectAll"
+    );
+    handleGeoJson.handleGeoJsonLayer(
+      viewer,
+      GJS_GENERAL_INFOR_LAYER,
+      "generalSelectAll"
+    );
   }
-  dataSrcObj[id].show = true;
-}
-export function eqCheck(event, hazard = "eq") {
+});
+
+export function eqCheck(event, hazard = "eq", reg = "ishikawa") {
   const id = event.target.id;
   if (event.target.checked) {
     if (hazard == "eq") {
-      turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id);
+      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id);
     } else if (hazard == "rain") {
-      turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id);
+      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id);
     } else if (hazard == "disaster") {
-      turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
+      handleGeoJson.turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
     } else if (hazard == "po_disaster") {
-      turnOnGJSLayer(viewer, GJS_POTENTIAL_DISASTER_LAYER, id);
+      handleGeoJson.turnOnGJSLayer(viewer, po_disaster_layer[reg], id);
     } else if (hazard == "general") {
-      turnOnGJSLayer(viewer, GJS_GENERAL_INFOR_LAYER, id);
+      handleGeoJson.turnOnGJSLayer(viewer, generalInfor_layer[reg], id);
     }
   } else {
     if (hazard == "eq") {
@@ -109,11 +164,10 @@ export function eqCheck(event, hazard = "eq") {
     } else if (hazard == "disaster") {
       GJS_DISASTER_2024_LAYER[id].show = false;
     } else if (hazard == "po_disaster") {
-      GJS_POTENTIAL_DISASTER_LAYER[id].show = false;
+      po_disaster_layer[reg][id].show = false;
     } else if (hazard == "general") {
-      GJS_GENERAL_INFOR_LAYER[id].show = false;
+      generalInfor_layer[reg][id].show = false;
     }
   }
 }
-
 window.eqCheck = eqCheck;
