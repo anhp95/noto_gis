@@ -1,8 +1,8 @@
 1. npm run build at local machine
 
 2. copy dist folder to the server at /var/www/html/noto_gis
-scp -P 9022 -r D:\project\noto_gis\code\dist\ anhp@157.110.16.104:/home/anhp/noto_gis
-mv /home/anhp/noto_gis/dist/ /var/www/html/noto_gis/
+scp -P 9022 -r D:\project\noto_gis\code\dist\* anhp@157.110.16.104:/home/anhp/noto_gis
+cp /home/anhp/noto_gis/dist/ /var/www/html/noto_gis/ # cannot use mv here
 
 3. make conf file at /etc/httpd/conf.d/noto_gis.conf
 <VirtualHost *:80>

@@ -196,6 +196,43 @@ export const getDisaster2024 = async () => {
   return geojson_layer;
 };
 
+function popLayerSetUp(obj) {
+  obj.entities.values.forEach((entity) => {
+    const pop_count = entity.properties.Population._value;
+    entity.polygon.material = Config.setPopColor(pop_count);
+  });
+}
+
+function droneImgLayerSetUp(obj) {
+  const entities = obj.entities.values;
+  for (const entity of entities) {
+    const imageUrl = entity.properties.src?.getValue();
+    const name = entity.properties.name?.getValue();
+    (entity.billboard.heightReference = HeightReference.CLAMP_TO_GROUND),
+      (entity.description = `
+        <div style="overflow: auto; text-align: center;">
+            <img src="${imageUrl}" 
+                  alt="Image for ${name}" 
+                  style="width: 800px; height: 400px; display: block;" />
+        </div>
+    `);
+  }
+}
+
+function villageLayerSetUp(obj) {
+  obj.entities.values.forEach((entity) => {
+    const cls = entity.properties.Class._value;
+    entity.polygon.material = Config.setVillageColor(cls);
+  });
+}
+
+function poVillageSetUp(obj) {
+  obj.entities.values.forEach((entity) => {
+    const cls = entity.properties.Class._value;
+    entity.polygon.material = Config.setPoVillageColor(cls);
+  });
+}
+
 export function handleGeoJsonLayer(viewer, tmsObj, selectAllID) {
   const events = Object.keys(tmsObj);
   if (events.length > 0) {
