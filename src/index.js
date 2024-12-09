@@ -1,5 +1,3 @@
-import "./js/fillHtmlContent.js";
-
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
@@ -13,11 +11,10 @@ import {
   HeightReference,
   Cartesian3,
 } from "cesium";
-import * as Config from "./js/config.js";
-// Ion.defaultAccessToken = Config.ionToken;
 
 import "cesium/Widgets/widgets.css";
 import "../src/css/main.css";
+import "./js/fillHtmlContent.js";
 
 import * as handleTMS from "./js/handleTMS.js";
 import * as handleGeoJson from "./js/handleGeoJson.js";
@@ -42,6 +39,10 @@ const GJS_DISASTER_2024_LAYER = await handleGeoJson.getDisaster2024();
 const GJS_POTENTIAL_DISASTER_LAYER = await handleGeoJson.getPoDisaster2024();
 const GJS_GENERAL_INFOR_LAYER = await handleGeoJson.getGeneralInfor();
 
+const IIDA_GJS_POTENTIAL_DISASTER_LAYER =
+  await handleGeoJson.getPoDisaster2024Iida();
+const IIDA_GJS_GENERAL_INFOR_LAYER = await handleGeoJson.getGeneralInforIida();
+
 handleGeoJson.handleGeoJsonLayer(
   viewer,
   GJS_DISASTER_2024_LAYER,
@@ -58,10 +59,6 @@ handleGeoJson.handleGeoJsonLayer(
   "generalSelectAll"
 );
 
-const IIDA_GJS_POTENTIAL_DISASTER_LAYER =
-  await handleGeoJson.getPoDisaster2024Iida();
-const IIDA_GJS_GENERAL_INFOR_LAYER = await handleGeoJson.getGeneralInforIida();
-
 const po_disaster_layer = {
   ishikawa: GJS_POTENTIAL_DISASTER_LAYER,
   iida: IIDA_GJS_POTENTIAL_DISASTER_LAYER,
@@ -70,6 +67,36 @@ const generalInfor_layer = {
   ishikawa: GJS_GENERAL_INFOR_LAYER,
   iida: IIDA_GJS_GENERAL_INFOR_LAYER,
 };
+
+export function eqCheck(event, hazard = "eq", reg = "ishikawa") {
+  const id = event.target.id;
+  if (event.target.checked) {
+    if (hazard == "eq") {
+      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id);
+    } else if (hazard == "rain") {
+      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id);
+    } else if (hazard == "disaster") {
+      handleGeoJson.turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
+    } else if (hazard == "po_disaster") {
+      handleGeoJson.turnOnGJSLayer(viewer, po_disaster_layer[reg], id);
+    } else if (hazard == "general") {
+      handleGeoJson.turnOnGJSLayer(viewer, generalInfor_layer[reg], id);
+    }
+  } else {
+    if (hazard == "eq") {
+      handleTMS.EQ_TMS_OBJ[id].show = false;
+    } else if (hazard == "rain") {
+      handleTMS.RAIN_TMS_OBJ[id].show = false;
+    } else if (hazard == "disaster") {
+      GJS_DISASTER_2024_LAYER[id].show = false;
+    } else if (hazard == "po_disaster") {
+      po_disaster_layer[reg][id].show = false;
+    } else if (hazard == "general") {
+      generalInfor_layer[reg][id].show = false;
+    }
+  }
+}
+window.eqCheck = eqCheck;
 
 const ishikawa_all_layers = [
   GJS_DISASTER_2024_LAYER,
@@ -85,11 +112,9 @@ const iida_all_layers = [
 ];
 
 const zoom_ishikawa = Cartesian3.fromDegrees(136.873498, 37.270735, 130000);
-
 const zoom_iida = Cartesian3.fromDegrees(137.958613, 35.56171, 130000);
 
 const regionSelect = document.getElementById("regionSelect");
-
 regionSelect.addEventListener("change", function (event) {
   const selectedValue = event.target.value; // Get the selected value
   console.log("Selected Region:", selectedValue);
@@ -142,32 +167,6 @@ regionSelect.addEventListener("change", function (event) {
   }
 });
 
-export function eqCheck(event, hazard = "eq", reg = "ishikawa") {
-  const id = event.target.id;
-  if (event.target.checked) {
-    if (hazard == "eq") {
-      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id);
-    } else if (hazard == "rain") {
-      handleGeoJson.turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id);
-    } else if (hazard == "disaster") {
-      handleGeoJson.turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
-    } else if (hazard == "po_disaster") {
-      handleGeoJson.turnOnGJSLayer(viewer, po_disaster_layer[reg], id);
-    } else if (hazard == "general") {
-      handleGeoJson.turnOnGJSLayer(viewer, generalInfor_layer[reg], id);
-    }
-  } else {
-    if (hazard == "eq") {
-      handleTMS.EQ_TMS_OBJ[id].show = false;
-    } else if (hazard == "rain") {
-      handleTMS.RAIN_TMS_OBJ[id].show = false;
-    } else if (hazard == "disaster") {
-      GJS_DISASTER_2024_LAYER[id].show = false;
-    } else if (hazard == "po_disaster") {
-      po_disaster_layer[reg][id].show = false;
-    } else if (hazard == "general") {
-      generalInfor_layer[reg][id].show = false;
-    }
-  }
-}
-window.eqCheck = eqCheck;
+viewer.camera.flyTo({
+  destination: zoom_ishikawa,
+});

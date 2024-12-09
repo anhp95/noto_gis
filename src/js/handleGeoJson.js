@@ -1,5 +1,16 @@
-import { GeoJsonDataSource, Color, IonResource, Ion } from "cesium";
 import * as Config from "./config.js";
+import {
+  GeoJsonDataSource,
+  Color,
+  IonResource,
+  Ion,
+  HeightReference,
+  JulianDate,
+  Math,
+  Cartesian3,
+  PointGraphics,
+  LabelGraphics,
+} from "cesium";
 
 Ion.defaultAccessToken = Config.ionToken;
 
@@ -11,7 +22,7 @@ const damaged_road_2024_path = "./data/damaged_road/noto_damaged_road.geojson";
 const heavyrain_path = "./data/heavyrain/heavyrain.geojson";
 
 const isolated_2024_path = "./data/isolated_village/affected_areas.geojson";
-const isolated_2024_ion = await IonResource.fromAssetId(2911721);
+// const isolated_2024_ion = await IonResource.fromAssetId(2911721);
 
 const po_isolated_path = "./data/isolated_village/po_affected_areas.geojson";
 
@@ -56,8 +67,9 @@ const po_iida_landslide_path = "./data/iida/po_landslide_w84.geojson";
 export const getGeneralInfor = async () => {
   const geojson_layer = {
     cityHall: await GeoJsonDataSource.load(cityHall_path, {
-      markerSize: 45,
+      markerSize: 30,
       markerSymbol: "city",
+      markerColor: Config.CITYGHALL_COLOR,
     }),
 
     boundary: await GeoJsonDataSource.load(boundary_path, {
@@ -65,8 +77,9 @@ export const getGeneralInfor = async () => {
       stroke: Config.BOUND_COLOR,
     }),
     eq_road_drone: await GeoJsonDataSource.load(eq_road_drone_path, {
-      markerSize: 45,
+      markerSize: 30,
       markerSymbol: "roadblock",
+      markerColor: Config.DRONEIMG_COLOR,
     }),
     population: await GeoJsonDataSource.load(pop_path),
   };
@@ -76,8 +89,9 @@ export const getGeneralInfor = async () => {
 export const getGeneralInforIida = async () => {
   const geojson_layer = {
     iida_cityHall: await GeoJsonDataSource.load(cityHall_iida_path, {
-      markerSize: 45,
+      markerSize: 30,
       markerSymbol: "city",
+      markerColor: Config.CITYGHALL_COLOR,
     }),
 
     iida_boundary: await GeoJsonDataSource.load(boundary_iida_path, {
@@ -143,16 +157,16 @@ export const getPoDisaster2024 = async () => {
 
 export const getDisaster2024 = async () => {
   const geojson_layer = {};
-  // (geojson_layer["isolated_2024"] = await GeoJsonDataSource.load(
-  //   isolated_2024_path,
-  //   {
-  //     stroke: Config.ROAD_COLOR,
-  //     fill: Config.ISOLATED_COLOR,
-  //   }
-  // )),
   (geojson_layer["isolated_2024"] = await GeoJsonDataSource.load(
-    isolated_2024_ion
+    isolated_2024_path,
+    {
+      stroke: Config.ROAD_COLOR,
+      fill: Config.ISOLATED_COLOR,
+    }
   )),
+    // (geojson_layer["isolated_2024"] = await GeoJsonDataSource.load(
+    //   isolated_2024_ion
+    // )),
     (geojson_layer["heavyRain"] = await GeoJsonDataSource.load(heavyrain_path, {
       stroke: Config.RAIN_COLOR,
       fill: Config.RAIN_COLOR,
@@ -184,7 +198,6 @@ export const getDisaster2024 = async () => {
 
 export function handleGeoJsonLayer(viewer, tmsObj, selectAllID) {
   const events = Object.keys(tmsObj);
-  console.log(events.length);
   if (events.length > 0) {
     document.getElementById(selectAllID).addEventListener("change", (event) => {
       if (event.target.checked) {
@@ -195,39 +208,36 @@ export function handleGeoJsonLayer(viewer, tmsObj, selectAllID) {
                 const pop_count = entity.properties.Population._value;
                 entity.polygon.material = Config.setPopColor(pop_count);
               });
-            }
-            if (key == "eq_road_drone") {
+            } else if (key == "eq_road_drone") {
               const entities = tmsObj[key].entities.values;
               for (const entity of entities) {
-                // entity.heightReference = HeightReference.CLAMP_TO_GROUND;
                 const imageUrl = entity.properties.src?.getValue();
                 const name = entity.properties.name?.getValue();
-                entity.description = `
+                (entity.billboard.heightReference =
+                  HeightReference.CLAMP_TO_GROUND),
+                  (entity.description = `
                     <div style="overflow: auto; text-align: center;">
                         <img src="${imageUrl}" 
                              alt="Image for ${name}" 
                              style="width: 800px; height: 400px; display: block;" />
                     </div>
-                `;
+                `);
               }
-              if (key == "isolated_2024") {
-                tmsObj[key].entities.values.forEach((entity) => {
-                  const cls = entity.properties.Class._value;
-                  entity.polygon.material = Config.setVillageColor(cls);
-                });
-              }
-              if (key === "potential_isolated") {
-                tmsObj[key].entities.values.forEach((entity) => {
-                  const cls = entity.properties.Class._value;
-                  entity.polygon.material = Config.setPoVillageColor(cls);
-                });
-              }
-              if (key === "iida_potential_isolated") {
-                tmsObj[key].entities.values.forEach((entity) => {
-                  const cls = entity.properties.Class._value;
-                  entity.polygon.material = Config.setPoVillageColor(cls);
-                });
-              }
+            } else if (key == "isolated_2024") {
+              tmsObj[key].entities.values.forEach((entity) => {
+                const cls = entity.properties.Class._value;
+                entity.polygon.material = Config.setVillageColor(cls);
+              });
+            } else if (key === "potential_isolated") {
+              tmsObj[key].entities.values.forEach((entity) => {
+                const cls = entity.properties.Class._value;
+                entity.polygon.material = Config.setPoVillageColor(cls);
+              });
+            } else if (key === "iida_potential_isolated") {
+              tmsObj[key].entities.values.forEach((entity) => {
+                const cls = entity.properties.Class._value;
+                entity.polygon.material = Config.setPoVillageColor(cls);
+              });
             }
             viewer.dataSources.add(tmsObj[key]);
           }
@@ -257,36 +267,32 @@ export function turnOnGJSLayer(viewer, dataSrcObj, id) {
         entity.outlineColor = Color.WHITE; // Set outline color
         entity.outlineWidth = 2.0;
       });
-    }
-    if (id == "eq_road_drone") {
+    } else if (id == "eq_road_drone") {
       const entities = dataSrcObj[id].entities.values;
+
       for (const entity of entities) {
-        // entity.heightReference = HeightReference.CLAMP_TO_GROUND;
-        // Set the InfoBox description to include the image
         const imageUrl = entity.properties.src?.getValue();
         const name = entity.properties.name?.getValue();
-        entity.description = `
+        (entity.billboard.heightReference = HeightReference.CLAMP_TO_GROUND),
+          (entity.description = `
             <div style="overflow: auto; text-align: center;">
                 <img src="${imageUrl}" 
                      alt="Image for ${name}" 
                      style="width: 800px; height: 400px; display: block;" />
             </div>
-        `;
+        `);
       }
-    }
-    if (id == "isolated_2024") {
+    } else if (id == "isolated_2024") {
       dataSrcObj[id].entities.values.forEach((entity) => {
         const cls = entity.properties.Class._value;
         entity.polygon.material = Config.setVillageColor(cls);
       });
-    }
-    if (id == "potential_isolated") {
+    } else if (id == "potential_isolated") {
       dataSrcObj[id].entities.values.forEach((entity) => {
         const cls = entity.properties.Class._value;
         entity.polygon.material = Config.setPoVillageColor(cls);
       });
-    }
-    if (id == "iida_potential_isolated") {
+    } else if (id == "iida_potential_isolated") {
       dataSrcObj[id].entities.values.forEach((entity) => {
         const cls = entity.properties.Class._value;
         entity.polygon.material = Config.setPoVillageColor(cls);

@@ -4,13 +4,14 @@ export const ionToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNWMwMDEwOC0zNzMxLTRjMzktYmNjYi1hMTEyOTMyNjQ1ZjgiLCJpZCI6NzU4LCJpYXQiOjE1MjU3NzI1Mzl9.kiP25lmIFUKvME9ByQEKwgT4aDfYExBsT1sKUywaD7s";
 
 export const QUAKE_COLOR = Color.GOLD;
-export const RAIN_COLOR = Color.TURQUOISE;
+export const RAIN_COLOR = Color.DODGERBLUE;
 export const TSUNAMI_COLOR = Color.FUCHSIA;
 export const ROAD_COLOR = Color.RED;
 export const PO_ROAD_COLOR = Color.CORNFLOWERBLUE;
 export const PO_QUAKE_COLOR = Color.FIREBRICK;
 export const BOUND_COLOR = Color.WHITE;
-export const HALL_COLOR = Color.CHARTREUSE;
+export const CITYGHALL_COLOR = Color.LIME;
+export const DRONEIMG_COLOR = Color.CRIMSON;
 
 export const LIMITED_COLOR = Color.BLUE;
 export const ISOLATED_COLOR = Color.ORANGE;
@@ -33,9 +34,9 @@ export const setVillageColor = (val) => {
   const no_color_list = ["Normal", "No Data"];
   if (no_color_list.includes(val)) {
     return Color.WHITE.withAlpha(0.0);
-  } else if (val == "Limited Isolated Village") {
+  } else if (val === "Limited Isolated Village") {
     return Color.fromCssColorString("#a6611a");
-  } else if (val == "Isolated Village") {
+  } else if (val === "Isolated Village") {
     return Color.fromCssColorString("#018571");
   }
 };
@@ -44,9 +45,9 @@ export const setPoVillageColor = (val) => {
   const no_color_list = ["Normal", "No Data"];
   if (no_color_list.includes(val)) {
     return Color.WHITE.withAlpha(0.0);
-  } else if (val == "Limited Isolated Village") {
+  } else if (val === "Limited Isolated Village") {
     return Color.fromCssColorString("#dfc27d");
-  } else if (val == "Isolated Village") {
+  } else if (val === "Isolated Village") {
     return Color.fromCssColorString("#80cdc1");
   }
 };
