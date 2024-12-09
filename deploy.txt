@@ -1,0 +1,1 @@
+scp -P 9022 -r D:\project\noto_gis\code\dist\ anhp@157.110.16.104:/home/anhp/noto_gis
