@@ -24,7 +24,7 @@ const generalInforData = [
     onchange: "eqCheck(event, 'general')",
   },
   {
-    label: "Damaged road by EQ - Drone",
+    label: "ドローン撮影の損傷道路画像",
     id: "eq_road_drone",
     name: "classification",
     onchange: "eqCheck(event, 'general')",
@@ -38,7 +38,7 @@ const potentialData = [
     onchange: null, // No onchange handler
   },
   {
-    label: "Potential isolated villages",
+    label: "潜在的な損傷区域",
     id: "potential_isolated",
     name: "classification",
     onchange: "eqCheck(event, 'po_disaster')",
@@ -85,7 +85,7 @@ const potentialDataIida = [
     onchange: null, // No onchange handler
   },
   {
-    label: "Potential isolated villages",
+    label: "潜在的な損傷区域",
     id: "iida_potential_isolated",
     name: "classification",
     onchange: "eqCheck(event, 'po_disaster', 'iida')",
@@ -112,7 +112,7 @@ const disasterData = [
     onchange: null,
   },
   {
-    label: "Isolated villages",
+    label: "損傷区域",
     id: "isolated_2024",
     name: "classification",
     onchange: "eqCheck(event, 'disaster')",
@@ -152,7 +152,7 @@ const earthQuakeData = [
     onchange: null,
   },
   {
-    label: "能登地区 (2024, April 05-26)",
+    label: "能登地区 (2024/04/05-26)",
     id: "20240102noto_0405_0426do",
     name: "classification",
     switch: true,

@@ -264,16 +264,19 @@ export function handleGeoJsonLayer(viewer, tmsObj, selectAllID) {
               tmsObj[key].entities.values.forEach((entity) => {
                 const cls = entity.properties.Class._value;
                 entity.polygon.material = Config.setVillageColor(cls);
+                // entity.polygon.height = 0;
               });
             } else if (key === "potential_isolated") {
               tmsObj[key].entities.values.forEach((entity) => {
                 const cls = entity.properties.Class._value;
                 entity.polygon.material = Config.setPoVillageColor(cls);
+                // entity.polygon.height = 0;
               });
             } else if (key === "iida_potential_isolated") {
               tmsObj[key].entities.values.forEach((entity) => {
                 const cls = entity.properties.Class._value;
                 entity.polygon.material = Config.setPoVillageColor(cls);
+                // entity.polygon.height = 0;
               });
             }
             viewer.dataSources.add(tmsObj[key]);

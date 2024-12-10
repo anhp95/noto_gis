@@ -6,6 +6,9 @@
   </head>
 
   <body>
+    <div id="loadingScreen" style="display: none;">
+      <div class="loader"></div>
+    </div>
     <section class="container-fluid">
       <div class="row position-relative">
         <div class="position-absolute mt-3 z-3">
@@ -123,7 +126,6 @@
               </div>
             </div>
           </div>
-
           <hr class="bold-hr" />
           <div class="row align-items-center">
             <div class="nav-item w-100 text-light">
@@ -158,7 +160,6 @@
               </div>
             </div>
           </div>
-
           <hr class="bold-hr" />
           <div class="row align-items-center">
             <div class="nav-item w-100 text-light">
@@ -193,7 +194,6 @@
               </div>
             </div>
           </div>
-
           <hr class="bold-hr" />
           <div class="row align-items-center">
             <div class="nav-item w-100 text-light">
@@ -231,12 +231,12 @@
           <hr class="bold-hr" />
           <div class="row align-items-center">
             <div class="nav-item w-100 text-light">
-              <span><h4>Legend</h4></span>
+              <span><h4>地図凡例</h4></span>
               <ul class="list-unstyled ps-3">
                 <li>
                   <div class="row align-items-center">
                     <div class="legend-container" id="legendPop">
-                      <h5>Population Ranges</h5>
+                      <h5>人口範囲</h5>
                       <div
                         style="
                           display: flex;
@@ -323,7 +323,7 @@
                       </div>
                     </div>
                     <div class="legend-container" id="legendVillage">
-                      <h5>Village Types</h5>
+                      <h5>損傷区域</h5>
                       <div
                         style="
                           display: flex;
@@ -340,7 +340,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Limited Isolated Village</span>
+                        <span>限界集落</span>
                       </div>
                       <div
                         style="
@@ -358,7 +358,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Isolated Village</span>
+                        <span>影響を受けた村</span>
                       </div>
                       <div style="display: flex; align-items: center">
                         <span
@@ -371,11 +371,11 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Normal / No Data</span>
+                        <span>正常 / データなし</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendPoVillage">
-                      <h5>Potential Village Types</h5>
+                      <h5>潜在的な損傷区域</h5>
                       <div
                         style="
                           display: flex;
@@ -392,7 +392,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Potential Limited Isolated Village</span>
+                        <span>潜在的な限界集落</span>
                       </div>
                       <div
                         style="
@@ -410,7 +410,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Potential Isolated Village</span>
+                        <span>潜在的な影響を受けた村</span>
                       </div>
                       <div style="display: flex; align-items: center">
                         <span
@@ -423,11 +423,11 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Normal / No Data</span>
+                        <span>正常 / データなし</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendDmgRoad">
-                      <h5>Damaged Road</h5>
+                      <h5>損傷した施設</h5>
                       <div
                         style="
                           display: flex;
@@ -444,11 +444,11 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Damaged Road</span>
+                        <span>損傷した道路</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendPoDmgRoad">
-                      <h5>Potential Damaged Road</h5>
+                      <h5>潜在的な損傷した施設</h5>
                       <div
                         style="
                           display: flex;
@@ -465,7 +465,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Potential Damaged Road</span>
+                        <span>潜在的な損傷した道路</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendRain">
@@ -485,7 +485,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>By heavy rain</span>
+                        <span>地すべり (大雨)</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendEarthquake">
@@ -505,7 +505,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>By earthquake</span>
+                        <span>地すべり (地震)</span>
                       </div>
                     </div>
                     <div class="legend-container"  id="lengendTsunami">
@@ -525,11 +525,11 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>By Tsunami</span>
+                        <span>津波</span>
                       </div>
                     </div>
                     <div class="legend-container" id="legendPoBosai">
-                      <h5>Potential Disaster</h5>
+                      <h5>潜在的な災害</h5>
                       <div
                         style="
                           display: flex;
@@ -546,7 +546,7 @@
                             margin-right: 10px;
                           "
                         ></span>
-                        <span>Potential Landslide</span>
+                        <span>潜在的な地すべり</span>
                       </div>
                     </div>
                   </div>
