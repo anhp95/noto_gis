@@ -96,3 +96,35 @@ body,
     transform: rotate(360deg);
   }
 }
+
+
+
+#fixedText {
+  position: fixed;          /* Fixed relative to the viewport */
+  bottom: 38px;             /* 10px above the bottom edge */
+  right: 10px;              /* 10px from the right edge */
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  color: white;             /* White text for visibility */
+  padding: 15px 20px;       /* Add padding for spacing around the text */
+  border-radius: 5px;       /* Rounded corners */
+  font-size: 14px;          /* Text size */
+  z-index: 1000;            /* Ensure it appears above other elements */
+  pointer-events: none;     /* Prevent interference with Cesium interactions */
+  width: auto;              /* Adjust width automatically to fit the content */
+  height: auto;             /* Adjust height automatically to fit the content */
+  white-space: normal;      /* Allow wrapping of text */
+}
+
+#fixedText p {
+  margin: 0;
+  line-height: 1.6;          /* Set line height for readability */
+}
+
+#fixedText a {
+  color: #00c7e3;            /* Link color */
+  text-decoration: none;     /* Remove underline */
+}
+
+#fixedText a:hover {
+  text-decoration: underline; /* Underline on hover */
+}

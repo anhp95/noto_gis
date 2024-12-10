@@ -17,4 +17,5 @@ cp /home/anhp/noto_gis/dist/ /var/www/html/noto_gis/ # cannot use mv here
 </VirtualHost>
 
 4. restart httpd service
+sudo systemctl reload httpd
 sudo systemctl restart httpd

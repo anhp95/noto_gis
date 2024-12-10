@@ -172,4 +172,5 @@ try {
   viewer.camera.flyTo({
     destination: zoom_ishikawa,
   });
+  viewer.scene.frameState.creditDisplay.container.style.bottom = "40px";
 }
