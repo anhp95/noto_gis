@@ -22,6 +22,11 @@ const viewer = new Viewer("cesiumContainer", {
   }),
 });
 
+// Disable ocean movement
+viewer.scene.globe.enableLighting = false; // Disables lighting effects, which includes ocean reflections
+viewer.scene.globe.depthTestAgainstTerrain = true; // Ensures terrain and water bodies stay static
+viewer.scene.globe.showWaterEffect = false; // Turns off water effect animations
+
 const zoom_ishikawa = Cartesian3.fromDegrees(136.873498, 37.270735, 130000);
 const zoom_iida = Cartesian3.fromDegrees(137.958613, 35.56171, 130000);
 
