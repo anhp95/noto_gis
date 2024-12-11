@@ -4,7 +4,6 @@ import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
 import "./css/main.css";
 import { showLoading, hideLoading } from "./js/loadingScreen.js";
 showLoading();
-
 import { Viewer, Terrain, GeoJsonDataSource, Cartesian3 } from "cesium";
 
 import "cesium/Widgets/widgets.css";

@@ -2,17 +2,12 @@ import * as Config from "./config.js";
 import {
   GeoJsonDataSource,
   Color,
+  HeightReference,
   IonResource,
   Ion,
-  HeightReference,
-  JulianDate,
-  Math,
-  Cartesian3,
-  PointGraphics,
-  LabelGraphics,
 } from "cesium";
 
-Ion.defaultAccessToken = Config.ionToken;
+// Ion.defaultAccessToken = Config.ionToken;
 
 const boundary_path = "./data/boundary/boundary.geojson";
 const cityHall_path = "./data/cityhall/cityhall.geojson";
@@ -22,7 +17,6 @@ const damaged_road_2024_path = "./data/damaged_road/noto_damaged_road.geojson";
 const heavyrain_path = "./data/heavyrain/heavyrain.geojson";
 
 const isolated_2024_path = "./data/isolated_village/affected_areas.geojson";
-// const isolated_2024_ion = await IonResource.fromAssetId(2911721);
 
 const po_isolated_path = "./data/isolated_village/po_affected_areas.geojson";
 
@@ -34,35 +28,39 @@ const potential_landslide_path =
 const eq_road_drone_path =
   "../data/mlit_road_data/geojson/damage_situation_aerial_photography.geojson";
 
-const eq_path = {
-  hokai_20240122_wajimaWEST:
-    "./data/earthquake/hokai_20240122_wajimaWEST.geojson",
-  hokai_all_20240115_wajimaCENTRAL_Re2:
-    "./data/earthquake/hokai_all_20240115_wajimaCENTRAL_Re2.geojson",
-  hokai_all_20240118_anamizu:
-    "./data/earthquake/hokai_all_20240118_anamizu.geojson",
-  hokai_all_20240118_nanao:
-    "./data/earthquake/hokai_all_20240118_nanao.geojson",
-  noto_eq: "./data/earthquake/earthquake_2024010_22.geojson",
-};
-
-const tsunami_path = {
-  tsunami_area_anamizu_20240118:
-    "./data/tsunami/shinsui-tsunami-area_anamizu_20240118.geojson",
-  tsunami_area_nanao_20240118:
-    "./data/tsunami/shinsui-tsunami-area_nanao_20240118.geojson",
-  tsunami_area_suzu_wajimaEAST_Re2_20240110:
-    "./data/tsunami/shinsui-tsunami-area_suzu-wajimaEAST-Re2_20240110.geojson",
-  tsunami_area_wajimaWEST_20240112:
-    "./data/tsunami/shinsui-tsunami-area_wajimaWEST_20240112.geojson",
-  noto_tsunami: "./data/tsunami/tsunami_20240110_18.geojson",
-};
+const eq_path = "./data/earthquake/earthquake_2024010_22.geojson";
+const tsunami_path = "./data/tsunami/tsunami_20240110_18.geojson";
 
 const boundary_iida_path = "./data/iida/boundary.geojson";
 const cityHall_iida_path = "./data/iida/cityhall.geojson";
 const po_iida_dmg_road_path = "./data/iida/po_dmg_road.geojson";
 const po_iida_isolated_village_path = "./data/iida/po_isolated_village.geojson";
 const po_iida_landslide_path = "./data/iida/po_landslide_w84.geojson";
+
+// const boundary_path = await IonResource.fromAssetId(2918024);
+// const cityHall_path = await IonResource.fromAssetId(2917942);
+// const pop_path = await IonResource.fromAssetId(2917942);
+
+// const damaged_road_2024_path = await IonResource.fromAssetId(2917941);
+// const heavyrain_path = await IonResource.fromAssetId(2918028);
+
+// const isolated_2024_path = await IonResource.fromAssetId(2918040);
+
+// const po_isolated_path = await IonResource.fromAssetId(2918041);
+
+// const potential_damaged_road_path = await IonResource.fromAssetId(2917939);
+// const potential_landslide_path = await IonResource.fromAssetId(2918027);
+
+// const eq_road_drone_path = await IonResource.fromAssetId(2918046);
+
+// const eq_path = await IonResource.fromAssetId(2918026);
+// const tsunami_path = await IonResource.fromAssetId(2918043);
+
+// const boundary_iida_path = await IonResource.fromAssetId(2918031);
+// const cityHall_iida_path = await IonResource.fromAssetId(2918032);
+// const po_iida_dmg_road_path = await IonResource.fromAssetId(2918035);
+// const po_iida_isolated_village_path = await IonResource.fromAssetId(2918036);
+// const po_iida_landslide_path = await IonResource.fromAssetId(2918038);
 
 export const getGeneralInfor = async () => {
   const geojson_layer = {
@@ -164,26 +162,20 @@ export const getDisaster2024 = async () => {
       fill: Config.ISOLATED_COLOR,
     }
   )),
-    // (geojson_layer["isolated_2024"] = await GeoJsonDataSource.load(
-    //   isolated_2024_ion
-    // )),
     (geojson_layer["heavyRain"] = await GeoJsonDataSource.load(heavyrain_path, {
       stroke: Config.RAIN_COLOR,
       fill: Config.RAIN_COLOR,
     }));
 
-  geojson_layer["noto_eq"] = await GeoJsonDataSource.load(eq_path["noto_eq"], {
+  geojson_layer["noto_eq"] = await GeoJsonDataSource.load(eq_path, {
     stroke: Config.QUAKE_COLOR,
     fill: Config.QUAKE_COLOR,
   });
 
-  geojson_layer["noto_tsunami"] = await GeoJsonDataSource.load(
-    tsunami_path["noto_tsunami"],
-    {
-      stroke: Config.TSUNAMI_COLOR,
-      fill: Config.TSUNAMI_COLOR,
-    }
-  );
+  geojson_layer["noto_tsunami"] = await GeoJsonDataSource.load(tsunami_path, {
+    stroke: Config.TSUNAMI_COLOR,
+    fill: Config.TSUNAMI_COLOR,
+  });
 
   geojson_layer["DRoad_2024"] = await GeoJsonDataSource.load(
     damaged_road_2024_path,
