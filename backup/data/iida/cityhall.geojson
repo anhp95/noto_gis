@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"name": "cityhall",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "OBJECTID": 1, "P34_001": "20205", "P34_002": "1", "P34_003": "1ѓc0s", "P34_004": "1ѓc0s" }, "geometry": { "type": "Point", "coordinates": [ 137.82182399997771, 35.514703000143413 ] } },
+{ "type": "Feature", "properties": { "OBJECTID": 2, "P34_001": "20205", "P34_002": "2", "P34_003": "2ؑ20o", "P34_004": "2ѓc0s" }, "geometry": { "type": "Point", "coordinates": [ 137.951910999592997, 35.346062999707726 ] } }
+]
+}

@@ -1,3 +1,21 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const fixedText = document.getElementById("fixedText");
+  const showTextButton = document.getElementById("showTextButton");
+  const hideTextButton = document.getElementById("hideTextButton");
+
+  // Show the fixedText when clicking the show button
+  showTextButton.addEventListener("click", function () {
+    fixedText.style.display = "block"; // Show the fixedText
+    this.style.display = "none"; // Hide the show button
+  });
+
+  // Hide fixedText using the hide button inside it
+  hideTextButton.addEventListener("click", function () {
+    fixedText.style.display = "none"; // Hide the fixedText
+    showTextButton.style.display = "block"; // Show the show button
+  });
+});
+
 // Rotate icon on collapse toggle
 document.querySelectorAll('[data-bs-toggle="collapse"]').forEach((button) => {
   button.addEventListener("click", function () {

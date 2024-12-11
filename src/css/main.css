@@ -98,21 +98,20 @@ body,
 }
 
 
-
 #fixedText {
-  position: fixed;          /* Fixed relative to the viewport */
-  bottom: 38px;             /* 10px above the bottom edge */
-  right: 10px;              /* 10px from the right edge */
+  position: fixed;           /* Fixed relative to the viewport */
+  bottom: 38px;              /* 10px above the bottom edge */
+  right: 10px;               /* 10px from the right edge */
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  color: white;             /* White text for visibility */
-  padding: 15px 20px;       /* Add padding for spacing around the text */
-  border-radius: 5px;       /* Rounded corners */
-  font-size: 14px;          /* Text size */
-  z-index: 1000;            /* Ensure it appears above other elements */
-  pointer-events: none;     /* Prevent interference with Cesium interactions */
-  width: auto;              /* Adjust width automatically to fit the content */
-  height: auto;             /* Adjust height automatically to fit the content */
-  white-space: normal;      /* Allow wrapping of text */
+  color: white;              /* White text for visibility */
+  padding: 15px 20px;        /* Add padding for spacing around the text */
+  border-radius: 5px;        /* Rounded corners */
+  font-size: 14px;           /* Text size */
+  z-index: 1000;             /* Prevent interference with Cesium interactions */
+  width: auto;               /* Adjust width automatically to fit the content */
+  height: auto;              /* Adjust height automatically to fit the content */
+  white-space: normal;       /* Allow wrapping of text */
+  display: none;             /* Initially hidden */
 }
 
 #fixedText p {
@@ -127,4 +126,44 @@ body,
 
 #fixedText a:hover {
   text-decoration: underline; /* Underline on hover */
+}
+
+#hideTextButton {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: transparent;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  z-index: 1010;
+}
+
+#hideTextButton:hover {
+  color: red;
+}
+
+#showTextButton {
+  position: fixed;          /* Fixed position on the viewport */
+  background-color: rgba(0, 0, 0, 0.8);  /* Semi-transparent background */
+  color: white;             /* White text for visibility */
+  border: none;             /* No border */
+  font-size: 14px;          /* Font size */
+  padding: 10px;            /* Padding for button */
+  cursor: pointer;         /* Cursor on hover */
+  border-radius: 5px;       /* Rounded corners */
+  text-align: center;       /* Centered text inside button */
+  right: 10px;              /* Position at the right edge */
+  bottom: 38px;             /* Position at the bottom edge */
+  z-index: 1010;            /* Ensure it stays above Cesium */
+  width: auto;               /* Adjust width automatically to fit the content */
+  height: auto;
+  color: white;
+  font-weight: bold;
+}
+
+#showTextButton:hover {
+  background-color: #444;  /* Darker background on hover */
+  color: red;
 }
