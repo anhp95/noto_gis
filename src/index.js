@@ -14,6 +14,7 @@ import "./js/fillHtmlContent.js";
 import * as handleTMS from "./js/handleTMS.js";
 import * as handleGeoJson from "./js/handleGeoJson.js";
 import "./js/rotateDropDown.js";
+import * as Config from "./js/config.js";
 
 const viewer = new Viewer("cesiumContainer", {
   terrain: Terrain.fromWorldTerrain({
@@ -74,19 +75,71 @@ try {
     iida: IIDA_GJS_GENERAL_INFOR_LAYER,
   };
 
+  // Handle individual checkbox
+  function turnOnGJSLayer(viewer, dataSrcObj, id, tms = true) {
+    if (!viewer.dataSources.contains(dataSrcObj[id])) {
+      if (id == "population") {
+        dataSrcObj[id].entities.values.forEach((entity) => {
+          const pop_count = entity.properties.Population._value;
+          entity.polygon.material = Config.setPopColor(pop_count);
+          entity.outline = true; // Enable outline
+          entity.outlineColor = Color.WHITE; // Set outline color
+          entity.outlineWidth = 2.0;
+        });
+      } else if (id == "eq_road_drone") {
+        const entities = dataSrcObj[id].entities.values;
+
+        for (const entity of entities) {
+          const imageUrl = entity.properties.src?.getValue();
+          const name = entity.properties.name?.getValue();
+          (entity.billboard.heightReference = HeightReference.CLAMP_TO_GROUND),
+            (entity.description = `
+              <div style="overflow: auto; text-align: center;">
+                  <img src="${imageUrl}" 
+                      alt="Image for ${name}" 
+                      style="width: 800px; height: 400px; display: block;" />
+              </div>
+          `);
+        }
+      } else if (id == "isolated_2024") {
+        dataSrcObj[id].entities.values.forEach((entity) => {
+          const cls = entity.properties.Class._value;
+          entity.polygon.material = Config.setVillageColor(cls);
+        });
+      } else if (id == "potential_isolated") {
+        dataSrcObj[id].entities.values.forEach((entity) => {
+          const cls = entity.properties.Class._value;
+          entity.polygon.material = Config.setPoVillageColor(cls);
+        });
+      } else if (id == "iida_potential_isolated") {
+        dataSrcObj[id].entities.values.forEach((entity) => {
+          const cls = entity.properties.Class._value;
+          entity.polygon.material = Config.setPoVillageColor(cls);
+        });
+      }
+
+      if (tms) {
+        viewer.imageryLayers.add(dataSrcObj[id]);
+      } else {
+        viewer.dataSources.add(dataSrcObj[id]);
+      }
+    }
+    dataSrcObj[id].show = true;
+  }
+
   function eqCheck(event, hazard = "eq", reg = "ishikawa") {
     const id = event.target.id;
     if (event.target.checked) {
       if (hazard == "eq") {
-        handleGeoJson.turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id);
+        turnOnGJSLayer(viewer, handleTMS.EQ_TMS_OBJ, id, true);
       } else if (hazard == "rain") {
-        handleGeoJson.turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id);
+        turnOnGJSLayer(viewer, handleTMS.RAIN_TMS_OBJ, id, true);
       } else if (hazard == "disaster") {
-        handleGeoJson.turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
+        turnOnGJSLayer(viewer, GJS_DISASTER_2024_LAYER, id);
       } else if (hazard == "po_disaster") {
-        handleGeoJson.turnOnGJSLayer(viewer, po_disaster_layer[reg], id);
+        turnOnGJSLayer(viewer, po_disaster_layer[reg], id);
       } else if (hazard == "general") {
-        handleGeoJson.turnOnGJSLayer(viewer, generalInfor_layer[reg], id);
+        turnOnGJSLayer(viewer, generalInfor_layer[reg], id);
       }
     } else {
       if (hazard == "eq") {
