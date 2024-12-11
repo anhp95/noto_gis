@@ -5,7 +5,14 @@ import "./css/main.css";
 import { showLoading, hideLoading } from "./js/loadingScreen.js";
 showLoading();
 
-import { Viewer, Terrain, GeoJsonDataSource, Cartesian3 } from "cesium";
+import {
+  Viewer,
+  Terrain,
+  GeoJsonDataSource,
+  Cartesian3,
+  Color,
+  HeightReference,
+} from "cesium";
 
 import "cesium/Widgets/widgets.css";
 import "../src/css/main.css";
@@ -76,7 +83,7 @@ try {
   };
 
   // Handle individual checkbox
-  function turnOnGJSLayer(viewer, dataSrcObj, id, tms = true) {
+  function turnOnGJSLayer(viewer, dataSrcObj, id, tms = false) {
     if (!viewer.dataSources.contains(dataSrcObj[id])) {
       if (id == "population") {
         dataSrcObj[id].entities.values.forEach((entity) => {
@@ -205,6 +212,10 @@ try {
       viewer.camera.flyTo({
         destination: zoom_ishikawa,
       });
+      // Add Earthquake TMS
+      handleTMS.handleTMS(viewer, handleTMS.EQ_TMS_OBJ, "eqSelectAll");
+      // Add Heavy Rain TMS
+      handleTMS.handleTMS(viewer, handleTMS.RAIN_TMS_OBJ, "rainSelectAll");
       handleGeoJson.handleGeoJsonLayer(
         viewer,
         GJS_DISASTER_2024_LAYER,
