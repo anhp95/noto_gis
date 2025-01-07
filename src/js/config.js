@@ -1,8 +1,5 @@
 import { Color } from "cesium";
 
-export const ionToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiNWMwMDEwOC0zNzMxLTRjMzktYmNjYi1hMTEyOTMyNjQ1ZjgiLCJpZCI6NzU4LCJpYXQiOjE1MjU3NzI1Mzl9.kiP25lmIFUKvME9ByQEKwgT4aDfYExBsT1sKUywaD7s";
-
 export const QUAKE_COLOR = Color.GOLD;
 export const RAIN_COLOR = Color.DODGERBLUE;
 export const TSUNAMI_COLOR = Color.FUCHSIA;

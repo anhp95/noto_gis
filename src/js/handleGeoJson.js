@@ -1,13 +1,5 @@
 import * as Config from "./config.js";
-import {
-  GeoJsonDataSource,
-  Color,
-  HeightReference,
-  IonResource,
-  Ion,
-} from "cesium";
-
-// Ion.defaultAccessToken = Config.ionToken;
+import { GeoJsonDataSource, HeightReference } from "cesium";
 
 const boundary_path = "./data/boundary/boundary.geojson";
 const cityHall_path = "./data/cityhall/cityhall.geojson";
@@ -36,31 +28,6 @@ const cityHall_iida_path = "./data/iida/cityhall.geojson";
 const po_iida_dmg_road_path = "./data/iida/po_dmg_road.geojson";
 const po_iida_isolated_village_path = "./data/iida/po_isolated_village.geojson";
 const po_iida_landslide_path = "./data/iida/po_landslide_w84.geojson";
-
-// const boundary_path = await IonResource.fromAssetId(2918024);
-// const cityHall_path = await IonResource.fromAssetId(2917942);
-// const pop_path = await IonResource.fromAssetId(2917942);
-
-// const damaged_road_2024_path = await IonResource.fromAssetId(2917941);
-// const heavyrain_path = await IonResource.fromAssetId(2918028);
-
-// const isolated_2024_path = await IonResource.fromAssetId(2918040);
-
-// const po_isolated_path = await IonResource.fromAssetId(2918041);
-
-// const potential_damaged_road_path = await IonResource.fromAssetId(2917939);
-// const potential_landslide_path = await IonResource.fromAssetId(2918027);
-
-// const eq_road_drone_path = await IonResource.fromAssetId(2918046);
-
-// const eq_path = await IonResource.fromAssetId(2918026);
-// const tsunami_path = await IonResource.fromAssetId(2918043);
-
-// const boundary_iida_path = await IonResource.fromAssetId(2918031);
-// const cityHall_iida_path = await IonResource.fromAssetId(2918032);
-// const po_iida_dmg_road_path = await IonResource.fromAssetId(2918035);
-// const po_iida_isolated_village_path = await IonResource.fromAssetId(2918036);
-// const po_iida_landslide_path = await IonResource.fromAssetId(2918038);
 
 export const getGeneralInfor = async () => {
   const geojson_layer = {

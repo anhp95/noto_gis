@@ -1,3 +1,7 @@
+import { Ion } from "cesium";
+Ion.defaultAccessToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI3NTJmYmM3MS0yY2VjLTQ0MDMtOTlmNy04Y2RkOWE0OTg2N2MiLCJpZCI6NzU4LCJpYXQiOjE3MzE5OTIzOTd9.YvMuM_gmdfYDNvZA5-lE9eV5DuKHQzrvtDJkq0iaKTM";
+
 import "../node_modules/bootstrap/dist/css/bootstrap.css";
 import "../node_modules/bootstrap/dist/js/bootstrap";
 import "../node_modules/bootstrap-icons/font/bootstrap-icons.css";
